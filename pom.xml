@@ -34,11 +34,17 @@
             <version>${junit.version}</version>
             <scope>test</scope>
         </dependency>
+        <dependency>
+            <groupId>org.easytesting</groupId>
+            <artifactId>fest-assert</artifactId>
+            <version>${fest-assert.version}</version>
+        </dependency>
 
     </dependencies>
 
     <properties>
         <jdk.version>1.6</jdk.version>
         <junit.version>4.11</junit.version>
+        <fest-assert.version>1.4</fest-assert.version>
     </properties>
 </project>

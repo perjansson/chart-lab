@@ -57,12 +57,11 @@ public class PieChart extends View2D implements Chart {
         PieCompoundEffect compoundFX = new PieCompoundEffect(linearFX, cubicFX, reflectionFX);
         pie.setPieEffect(compoundFX);
 
-        PieSlice s1 = PieToolkit.createSlice("s1", new Color(240, 240, 240, 240), 45, 0);
+        PieSlice s1 = PieToolkit.createSlice("s1", new Color(240, 240, 240, 240), 5, 0);
         PieSlice s2 = PieToolkit.createSlice("s2", RosePalette.COALBLACK, 5, 0);
         PieSlice s3 = PieToolkit.createSlice("s3", new Color(78, 148, 44), 30, 0);
         PieSlice s4 = PieToolkit.createSlice("s4", RosePalette.AEGEANBLUE, 5, 0);
-        PieSlice s5 = PieToolkit.createSlice("s5", RosePalette.INDIGO, 5, 0);
-
+        PieSlice s5 = PieToolkit.createSlice("s5", RosePalette.INDIGO, 45, 0);
 
         PieToolkit.pushSlices(pie, s1, s2, s3, s4, s5);
         piePlugin.addPie(pie);
@@ -139,7 +138,6 @@ public class PieChart extends View2D implements Chart {
         label5.setLinkExtends(30);
         label5.setMargin(70);
         s5.addSliceLabel(label5);
-
     }
 
     @Override
