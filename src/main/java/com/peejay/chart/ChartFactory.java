@@ -4,4 +4,6 @@ public interface ChartFactory {
 
     Chart createPieChart();
 
+    Chart createBackgroundChart();
+
 }
