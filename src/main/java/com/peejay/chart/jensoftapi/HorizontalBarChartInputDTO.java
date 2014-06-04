@@ -6,8 +6,8 @@ public class HorizontalBarChartInputDTO extends ChartInputDTO {
 
     private Map<String, Double> input;
 
-    public HorizontalBarChartInputDTO(Map<String, Double> input, int width, int height) {
-        super(width, height);
+    public HorizontalBarChartInputDTO(Map<String, Double> input, int width, int height, String type) {
+        super(width, height, type);
         this.input = input;
     }
 

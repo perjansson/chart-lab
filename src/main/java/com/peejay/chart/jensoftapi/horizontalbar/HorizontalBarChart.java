@@ -35,53 +35,9 @@ import com.peejay.chart.jensoftapi.HorizontalBarChartInputDTO;
 public class HorizontalBarChart extends View2D implements Chart {
 
     public HorizontalBarChart(HorizontalBarChartInputDTO input) {
-        super();
-
-        setPlaceHolderAxisSouth(80);
-        setPlaceHolderAxisWest(120);
-        setPlaceHolderAxisEast(120);
-
-        Color black = Color.BLACK;
-
-        // bar 1
-        BarSymbol b1 = new BarSymbol();
-        b1.setThemeColor(black);
-        b1.setThickness(20);
-        b1.setBase(-30);
-        b1.setAscentValue(62);
-        b1.setName("b1");
-        b1.setSymbol("bar 1");
-        b1.setMorpheStyle(MorpheStyle.Rectangle);
-        b1.setBarDraw(new BarDefaultDraw());
-        b1.setBarFill(new BarFill1());
-        b1.setBarEffect(new BarEffect4());
-
-        // bar 2
-        BarSymbol b2 = new BarSymbol();
-        b2.setThemeColor(black);
-        b2.setThickness(20);
-        b2.setBase(-30);
-        b2.setAscentValue(62);
-        b2.setName("b2");
-        b2.setSymbol("bar 2");
-        b2.setMorpheStyle(MorpheStyle.Rectangle);
-        b2.setBarDraw(new BarDefaultDraw());
-        b2.setBarFill(new BarFill1());
-        b2.setBarEffect(new BarEffect4());
-        b2.setBarLabel(new BarSymbolDefaultLabel(0, 0));
-
-        // bar 3
-        BarSymbol b3 = new BarSymbol();
-        b3.setThemeColor(black);
-        b3.setThickness(20);
-        b3.setBase(-30);
-        b3.setDescentValue(47);
-        b3.setName("b3");
-        b3.setSymbol("bar 3");
-        b3.setMorpheStyle(MorpheStyle.Rectangle);
-        b3.setBarDraw(new BarDefaultDraw());
-        b3.setBarFill(new BarFill1());
-        b3.setBarEffect(new BarEffect4());
+        setPlaceHolderAxisSouth(40);
+        setPlaceHolderAxisWest(10);
+        setPlaceHolderAxisEast(10);
 
         // window projection
         Window2D w2d = new Window2D.Linear(-100, 120, 0, 0);
@@ -99,22 +55,27 @@ public class HorizontalBarChart extends View2D implements Chart {
         BarSymbolLayer barLayer = new BarSymbolLayer();
         barPlugin.addLayer(barLayer);
 
-        barLayer.addSymbol(SymbolComponent.createGlue(BarSymbol.class));
-        barLayer.addSymbol(b1);
-        barLayer.addSymbol(SymbolComponent.createGlue(BarSymbol.class));
-        barLayer.addSymbol(b2);
-        barLayer.addSymbol(SymbolComponent.createGlue(BarSymbol.class));
-        barLayer.addSymbol(b3);
-        barLayer.addSymbol(SymbolComponent.createGlue(BarSymbol.class));
+        Double accumulatedValue = 0d;
+        for (String name : input.getInput().keySet()) {
+            Double value = input.getInput().get(name);
+            BarSymbol b = new BarSymbol();
+            b.setThemeColor(Color.BLACK);
+            b.setThickness(20);
+            b.setBase(accumulatedValue + 0);
+            b.setAscentValue(accumulatedValue + value);
+            b.setName(name);
+            b.setSymbol(name);
+            b.setMorpheStyle(MorpheStyle.Rectangle);
+            b.setBarDraw(new BarDefaultDraw());
+            b.setBarFill(new BarFill1());
+            b.setBarEffect(new BarEffect4());
+            barLayer.addSymbol(SymbolComponent.createGlue(BarSymbol.class));
+            barLayer.addSymbol(b);
 
-        w2d.registerPlugin(new OutlinePlugin());
+            accumulatedValue += value;
+        }
 
-        Legend legend = new Legend("H Bar Simple Chart");
-        legend.setConstraints(new LegendConstraints(LegendPosition.South, 0.8f, LegendAlignment.Rigth));
-        LegendPlugin legendPlugin = new LegendPlugin();
-        legendPlugin.addLegend(legend);
-        w2d.registerPlugin(legendPlugin);
-
+        w2d.registerPlugin(new OutlinePlugin(Color.BLACK));
     }
 
     @Override

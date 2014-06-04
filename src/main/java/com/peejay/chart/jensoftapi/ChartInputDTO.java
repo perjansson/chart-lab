@@ -4,10 +4,12 @@ public abstract class ChartInputDTO {
 
     private int width;
     private int height;
+    private String type;
 
-    protected ChartInputDTO(int width, int height) {
+    protected ChartInputDTO(int width, int height, String type) {
         this.width = width;
         this.height = height;
+        this.type = type;
     }
 
     public int getWidth() {
@@ -16,5 +18,9 @@ public abstract class ChartInputDTO {
 
     public int getHeight() {
         return height;
+    }
+
+    public String getType() {
+        return type;
     }
 }

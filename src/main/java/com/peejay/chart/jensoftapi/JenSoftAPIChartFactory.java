@@ -11,8 +11,6 @@ import com.peejay.chart.jensoftapi.pie.PieChart;
 // TODO: If construction of pie chart gets complicated a chart specific builders might be in order.
 public class JenSoftAPIChartFactory implements ChartFactory {
 
-    public static final String IMAGE_TYPE = "png";
-
     @Override
     public Chart createPieChart() {
         return new PieChart();
@@ -26,7 +24,7 @@ public class JenSoftAPIChartFactory implements ChartFactory {
     @Override
     public ChartDTO createHorizontalBarChart(HorizontalBarChartInputDTO input) {
         HorizontalBarChart chart = new HorizontalBarChart(input);
-        byte[] imageAsByteArray = ChartUtil.toImageByteArray(chart, 450, 350, IMAGE_TYPE);
+        byte[] imageAsByteArray = ChartUtil.toImageByteArray(chart, input.getWidth(), input.getHeight(), input.getType());
         return new ChartDTO(imageAsByteArray);
     }
 
