@@ -32,7 +32,6 @@ import com.jensoft.core.window.Window2D;
 import com.peejay.chart.Chart;
 import com.peejay.chart.jensoftapi.HorizontalBarChartInputDTO;
 
-@JenSoftView(background = DarkViewBackground.class)
 public class HorizontalBarChart extends View2D implements Chart {
 
     public HorizontalBarChart(HorizontalBarChartInputDTO input) {
@@ -42,32 +41,30 @@ public class HorizontalBarChart extends View2D implements Chart {
         setPlaceHolderAxisWest(120);
         setPlaceHolderAxisEast(120);
 
-        Color red = new Color(254, 206, 12);
-        Color green = new Color(125, 186, 39);
-        Color orange = new Color(223, 167, 59);
+        Color black = Color.BLACK;
 
         // bar 1
         BarSymbol b1 = new BarSymbol();
-        b1.setThemeColor(orange);
+        b1.setThemeColor(black);
         b1.setThickness(20);
         b1.setBase(-30);
         b1.setAscentValue(62);
         b1.setName("b1");
         b1.setSymbol("bar 1");
-        b1.setMorpheStyle(MorpheStyle.Round);
+        b1.setMorpheStyle(MorpheStyle.Rectangle);
         b1.setBarDraw(new BarDefaultDraw());
         b1.setBarFill(new BarFill1());
         b1.setBarEffect(new BarEffect4());
 
         // bar 2
         BarSymbol b2 = new BarSymbol();
-        b2.setThemeColor(green);
+        b2.setThemeColor(black);
         b2.setThickness(20);
         b2.setBase(-30);
-        b2.setDescentValue(83);
+        b1.setAscentValue(62);
         b2.setName("b2");
         b2.setSymbol("bar 2");
-        b2.setMorpheStyle(MorpheStyle.Round);
+        b2.setMorpheStyle(MorpheStyle.Rectangle);
         b2.setBarDraw(new BarDefaultDraw());
         b2.setBarFill(new BarFill1());
         b2.setBarEffect(new BarEffect4());
@@ -75,7 +72,7 @@ public class HorizontalBarChart extends View2D implements Chart {
 
         // bar 3
         BarSymbol b3 = new BarSymbol();
-        b3.setThemeColor(red);
+        b3.setThemeColor(black);
         b3.setThickness(20);
         b3.setBase(-30);
         b3.setDescentValue(47);
@@ -117,15 +114,6 @@ public class HorizontalBarChart extends View2D implements Chart {
         LegendPlugin legendPlugin = new LegendPlugin();
         legendPlugin.addLegend(legend);
         w2d.registerPlugin(legendPlugin);
-
-        ZoomBoxPlugin zoomTool = new ZoomBoxPlugin();
-        w2d.registerPlugin(zoomTool);
-
-        TranslatePlugin toolTranslate = new TranslatePlugin();
-        w2d.registerPlugin(toolTranslate);
-
-        ZoomWheelPlugin zoomWheel = new ZoomWheelPlugin();
-        w2d.registerPlugin(zoomWheel);
 
     }
 
