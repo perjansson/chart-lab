@@ -61,7 +61,7 @@ public class HorizontalBarChart extends View2D implements Chart {
         b2.setThemeColor(black);
         b2.setThickness(20);
         b2.setBase(-30);
-        b1.setAscentValue(62);
+        b2.setAscentValue(62);
         b2.setName("b2");
         b2.setSymbol("bar 2");
         b2.setMorpheStyle(MorpheStyle.Rectangle);
