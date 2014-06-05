@@ -1,6 +1,6 @@
 package com.peejay.chart.jensoftapi.horizontalbar;
 
-import java.awt.Color;
+import java.awt.*;
 import java.awt.image.BufferedImage;
 
 import com.jensoft.core.catalog.nature.JenSoftView;
@@ -20,8 +20,9 @@ import com.jensoft.core.plugin.symbol.SymbolComponent;
 import com.jensoft.core.plugin.symbol.SymbolPlugin;
 import com.jensoft.core.plugin.symbol.SymbolPlugin.SymbolNature;
 import com.jensoft.core.plugin.symbol.painter.draw.BarDefaultDraw;
-import com.jensoft.core.plugin.symbol.painter.effect.BarEffect4;
+import com.jensoft.core.plugin.symbol.painter.effect.*;
 import com.jensoft.core.plugin.symbol.painter.fill.BarFill1;
+import com.jensoft.core.plugin.symbol.painter.fill.BarFill2;
 import com.jensoft.core.plugin.symbol.painter.label.BarSymbolDefaultLabel;
 import com.jensoft.core.plugin.translate.TranslatePlugin;
 import com.jensoft.core.plugin.zoom.box.ZoomBoxPlugin;
@@ -32,50 +33,53 @@ import com.jensoft.core.window.Window2D;
 import com.peejay.chart.Chart;
 import com.peejay.chart.jensoftapi.HorizontalBarChartInputDTO;
 
+import javax.swing.border.Border;
+
 public class HorizontalBarChart extends View2D implements Chart {
 
     public HorizontalBarChart(HorizontalBarChartInputDTO input) {
-        setPlaceHolderAxisSouth(40);
-        setPlaceHolderAxisWest(10);
-        setPlaceHolderAxisEast(10);
+        setPlaceHolderAxisSouth(5);
+        setPlaceHolderAxisWest(5);
+        setPlaceHolderAxisEast(5);
 
         // window projection
-        Window2D w2d = new Window2D.Linear(-100, 120, 0, 0);
+        Window2D w2d = new Window2D.Linear(0, 100, 0, 0);
         registerWindow2D(w2d);
 
         SymbolPlugin barPlugin = new SymbolPlugin();
         barPlugin.setNature(SymbolNature.Horizontal);
         w2d.registerPlugin(barPlugin);
 
-        AxisMetricsPlugin.ModeledMetrics southMetrics = new AxisMetricsPlugin.ModeledMetrics.S();
-        w2d.registerPlugin(southMetrics);
-        southMetrics.setMetricsFont(InputFonts.getNeuropol(12));
-        southMetrics.registerMetricsModels(MetricsModelRangeCollections.NanoGiga);
-
         BarSymbolLayer barLayer = new BarSymbolLayer();
         barPlugin.addLayer(barLayer);
+
+        BarSymbol total = createBarSymbol("Total", 0d, 100d);
+        barLayer.addSymbol(SymbolComponent.createStrut(BarSymbol.class, 10));
+        barLayer.addSymbol(total);
 
         Double accumulatedValue = 0d;
         for (String name : input.getInput().keySet()) {
             Double value = input.getInput().get(name);
-            BarSymbol b = new BarSymbol();
-            b.setThemeColor(Color.BLACK);
-            b.setThickness(20);
-            b.setBase(accumulatedValue + 0);
-            b.setAscentValue(accumulatedValue + value);
-            b.setName(name);
-            b.setSymbol(name);
-            b.setMorpheStyle(MorpheStyle.Rectangle);
-            b.setBarDraw(new BarDefaultDraw());
-            b.setBarFill(new BarFill1());
-            b.setBarEffect(new BarEffect4());
-            barLayer.addSymbol(SymbolComponent.createGlue(BarSymbol.class));
+            BarSymbol b = createBarSymbol(name, accumulatedValue, value);
+            barLayer.addSymbol(SymbolComponent.createStrut(BarSymbol.class, 10));
             barLayer.addSymbol(b);
-
             accumulatedValue += value;
         }
+    }
 
-        w2d.registerPlugin(new OutlinePlugin(Color.BLACK));
+    private BarSymbol createBarSymbol(String name, Double base, Double value) {
+        BarSymbol b = new BarSymbol();
+        b.setThemeColor(Color.BLACK);
+        b.setThickness(40);
+        b.setBase(base + 0);
+        b.setAscentValue(value);
+        b.setName(name);
+        b.setSymbol(name);
+        b.setMorpheStyle(MorpheStyle.Rectangle);
+        b.setBarDraw(new BarDefaultDraw());
+        b.setBarFill(new BarFill1());
+        b.setBarEffect(new BarEffect3());
+        return b;
     }
 
     @Override
