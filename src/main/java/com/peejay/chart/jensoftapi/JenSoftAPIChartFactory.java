@@ -5,27 +5,47 @@ import com.peejay.chart.ChartDTO;
 import com.peejay.chart.ChartFactory;
 import com.peejay.chart.ChartUtil;
 import com.peejay.chart.jensoftapi.background.BackgroundImageChart;
-import com.peejay.chart.jensoftapi.horizontalbar.HorizontalBarChart;
+import com.peejay.chart.jensoftapi.horizontalbar.JenSoftApiHorizontalBarChart;
+import com.peejay.chart.jensoftapi.horizontalbar.JenSoftApiHorizontalBarChartFactory;
 import com.peejay.chart.jensoftapi.pie.PieChart;
 
-// TODO: If construction of pie chart gets complicated a chart specific builders might be in order.
-public class JenSoftAPIChartFactory implements ChartFactory {
+public class JenSoftApiChartFactory implements ChartFactory {
+
+    private JenSoftApiHorizontalBarChartFactory horizontalBarChartFactory;
+
+    public JenSoftApiChartFactory(JenSoftApiHorizontalBarChartFactory horizontalBarChartFactory) {
+        this.horizontalBarChartFactory = horizontalBarChartFactory;
+    }
 
     @Override
+    public ChartDTO createHorizontalBarChart(HorizontalBarChartInputDTO input) {
+        JenSoftApiHorizontalBarChart chart = horizontalBarChartFactory.createChart();
+        chart.addBar("Total", 0d, 100d);
+        Double accumulatedValue = 0d;
+        for (String name : input.getInput().keySet()) {
+            Double value = input.getInput().get(name);
+            chart.addBar(name, accumulatedValue, value);
+            accumulatedValue += value;
+        }
+
+        return createChartDTO(input, chart);
+    }
+
+    private ChartDTO createChartDTO(ChartInputDTO input, Chart chart) {
+        byte[] imageAsByteArray = ChartUtil.toImageByteArray(chart, input.getWidth(), input.getHeight(), input.getType());
+        return new ChartDTO(imageAsByteArray);
+    }
+
+    @Override
+    @Deprecated
     public Chart createPieChart() {
         return new PieChart();
     }
 
     @Override
+    @Deprecated
     public Chart createBackgroundChart() {
         return new BackgroundImageChart();
-    }
-
-    @Override
-    public ChartDTO createHorizontalBarChart(HorizontalBarChartInputDTO input) {
-        HorizontalBarChart chart = new HorizontalBarChart(input);
-        byte[] imageAsByteArray = ChartUtil.toImageByteArray(chart, input.getWidth(), input.getHeight(), input.getType());
-        return new ChartDTO(imageAsByteArray);
     }
 
 }
