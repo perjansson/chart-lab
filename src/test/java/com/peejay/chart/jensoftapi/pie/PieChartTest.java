@@ -1,5 +1,6 @@
 package com.peejay.chart.jensoftapi.pie;
 
+import com.peejay.chart.jensoftapi.pie.PieChart;
 import org.junit.Test;
 
 import java.awt.image.BufferedImage;

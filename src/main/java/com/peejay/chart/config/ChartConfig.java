@@ -1,6 +1,7 @@
 package com.peejay.chart.config;
 
 import com.peejay.chart.ChartFactory;
+import com.peejay.chart.ChartUtil;
 import com.peejay.chart.jensoftapi.JenSoftApiChartFactory;
 import com.peejay.chart.jensoftapi.horizontalbar.JenSoftApiHorizontalBarChartFactory;
 import org.springframework.context.annotation.Bean;
@@ -11,7 +12,7 @@ public class ChartConfig {
 
     @Bean
     public ChartFactory chartFactory() {
-        return new JenSoftApiChartFactory(jenSoftHorizontalBarChartFactory());
+        return new JenSoftApiChartFactory(jenSoftHorizontalBarChartFactory(), new ChartUtil());
     }
 
     private JenSoftApiHorizontalBarChartFactory jenSoftHorizontalBarChartFactory() {
