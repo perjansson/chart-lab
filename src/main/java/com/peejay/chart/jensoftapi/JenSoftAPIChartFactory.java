@@ -12,9 +12,11 @@ import com.peejay.chart.jensoftapi.pie.PieChart;
 public class JenSoftApiChartFactory implements ChartFactory {
 
     private JenSoftApiHorizontalBarChartFactory horizontalBarChartFactory;
+    private ChartUtil chartUtil;
 
-    public JenSoftApiChartFactory(JenSoftApiHorizontalBarChartFactory horizontalBarChartFactory) {
+    public JenSoftApiChartFactory(JenSoftApiHorizontalBarChartFactory horizontalBarChartFactory, ChartUtil chartUtil) {
         this.horizontalBarChartFactory = horizontalBarChartFactory;
+        this.chartUtil = chartUtil;
     }
 
     @Override
@@ -32,7 +34,7 @@ public class JenSoftApiChartFactory implements ChartFactory {
     }
 
     private ChartDTO createChartDTO(ChartInputDTO input, Chart chart) {
-        byte[] imageAsByteArray = ChartUtil.toImageByteArray(chart, input.getWidth(), input.getHeight(), input.getType());
+        byte[] imageAsByteArray = chartUtil.toImageByteArray(chart, input.getWidth(), input.getHeight(), input.getType());
         return new ChartDTO(imageAsByteArray);
     }
 
