@@ -16,11 +16,11 @@ import com.jensoft.core.view.View2D;
 import com.jensoft.core.window.Window2D;
 import com.peejay.chart.Chart;
 
-public class JenSoftApiHorizontalBarChart extends View2D implements Chart {
+public class HorizontalBarChart extends View2D implements Chart {
 
     private BarSymbolLayer barLayer;
 
-    public JenSoftApiHorizontalBarChart() {
+    public HorizontalBarChart() {
         setPlaceHolderAxisSouth(5);
         setPlaceHolderAxisWest(5);
         setPlaceHolderAxisEast(5);

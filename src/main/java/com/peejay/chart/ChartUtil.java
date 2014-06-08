@@ -1,12 +1,13 @@
 package com.peejay.chart;
 
-import sun.misc.BASE64Encoder;
+import org.springframework.stereotype.Service;
 
 import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
 
+@Service
 public class ChartUtil {
 
     public byte[] toImageByteArray(Chart chart, int width, int height, String imageType) {
