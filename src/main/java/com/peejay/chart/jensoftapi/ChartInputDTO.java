@@ -1,15 +1,21 @@
 package com.peejay.chart.jensoftapi;
 
-public abstract class ChartInputDTO {
+public class ChartInputDTO<T extends Object> {
 
+    private T input;
     private int width;
     private int height;
     private String type;
 
-    protected ChartInputDTO(int width, int height, String type) {
+    public ChartInputDTO(T input, int width, int height, String type) {
+        this.input = input;
         this.width = width;
         this.height = height;
         this.type = type;
+    }
+
+    public T getInput() {
+        return input;
     }
 
     public int getWidth() {

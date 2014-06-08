@@ -6,31 +6,32 @@ import com.peejay.chart.ChartFactory;
 import com.peejay.chart.ChartUtil;
 import com.peejay.chart.jensoftapi.background.BackgroundImageChart;
 import com.peejay.chart.jensoftapi.horizontalbar.JenSoftApiHorizontalBarChart;
-import com.peejay.chart.jensoftapi.horizontalbar.JenSoftApiHorizontalBarChartFactory;
 import com.peejay.chart.jensoftapi.pie.PieChart;
+
+import java.util.Map;
 
 public class JenSoftApiChartFactory implements ChartFactory {
 
-    private JenSoftApiHorizontalBarChartFactory horizontalBarChartFactory;
+    private JenSoftApiChartProvider chartProvider;
     private ChartUtil chartUtil;
 
-    public JenSoftApiChartFactory(JenSoftApiHorizontalBarChartFactory horizontalBarChartFactory, ChartUtil chartUtil) {
-        this.horizontalBarChartFactory = horizontalBarChartFactory;
+    public JenSoftApiChartFactory(JenSoftApiChartProvider chartProvider, ChartUtil chartUtil) {
+        this.chartProvider = chartProvider;
         this.chartUtil = chartUtil;
     }
 
     @Override
-    public ChartDTO createHorizontalBarChart(HorizontalBarChartInputDTO input) {
-        JenSoftApiHorizontalBarChart chart = horizontalBarChartFactory.createChart();
+    public ChartDTO createHorizontalBarChart(ChartInputDTO<Map<String, Double>> inputDTO) {
+        JenSoftApiHorizontalBarChart chart = chartProvider.getHorizontalBarChart();
         chart.addBar("Total", 0d, 100d);
         Double accumulatedValue = 0d;
-        for (String name : input.getInput().keySet()) {
-            Double value = input.getInput().get(name);
+        for (String name : inputDTO.getInput().keySet()) {
+            Double value = inputDTO.getInput().get(name);
             chart.addBar(name, accumulatedValue, value);
             accumulatedValue += value;
         }
 
-        return createChartDTO(input, chart);
+        return createChartDTO(inputDTO, chart);
     }
 
     private ChartDTO createChartDTO(ChartInputDTO input, Chart chart) {

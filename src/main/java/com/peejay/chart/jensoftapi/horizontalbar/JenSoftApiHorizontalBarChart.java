@@ -20,7 +20,7 @@ public class JenSoftApiHorizontalBarChart extends View2D implements Chart {
 
     private BarSymbolLayer barLayer;
 
-    protected JenSoftApiHorizontalBarChart() {
+    public JenSoftApiHorizontalBarChart() {
         setPlaceHolderAxisSouth(5);
         setPlaceHolderAxisWest(5);
         setPlaceHolderAxisEast(5);

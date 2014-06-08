@@ -1,6 +1,8 @@
 package com.peejay.chart;
 
-import com.peejay.chart.jensoftapi.HorizontalBarChartInputDTO;
+import com.peejay.chart.jensoftapi.ChartInputDTO;
+
+import java.util.Map;
 
 public interface ChartFactory {
 
@@ -8,6 +10,6 @@ public interface ChartFactory {
 
     Chart createBackgroundChart();
 
-    ChartDTO createHorizontalBarChart(HorizontalBarChartInputDTO input);
+    ChartDTO createHorizontalBarChart(ChartInputDTO<Map<String, Double>> inputDTO);
 
 }
