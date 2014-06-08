@@ -1,14 +1,13 @@
 package com.peejay.chart.jensoftapi;
 
 import com.peejay.chart.ChartDTO;
+import com.peejay.chart.ChartInputDTO;
 import com.peejay.chart.ChartUtil;
-import com.peejay.chart.jensoftapi.horizontalbar.HorizontalBarChart;
-import com.peejay.chart.jensoftapi.horizontalbar.HorizontalBarChartFactory;
+import com.peejay.chart.JenSoftApiChartFactory;
 import org.junit.Before;
 import org.junit.Test;
 
 import java.util.Map;
-import java.util.TreeMap;
 
 import static org.fest.assertions.Assertions.assertThat;
 import static org.mockito.BDDMockito.given;
@@ -18,14 +17,19 @@ import static org.mockito.Mockito.verify;
 public class JenSoftApiChartFactoryTest {
 
     private JenSoftApiChartFactory chartFactory;
+
     private HorizontalBarChartFactory horizontalBarChartFactory;
+    private PieChartFactory pieChartFactory;
+    private BackgroundImageChartFactory backgroundImageChartFactory;
     private ChartUtil chartUtil;
 
     @Before
     public void setUp() {
         horizontalBarChartFactory = mock(HorizontalBarChartFactory.class);
+        pieChartFactory = mock(PieChartFactory.class);
+        backgroundImageChartFactory = mock(BackgroundImageChartFactory.class);
         chartUtil = mock(ChartUtil.class);
-        chartFactory = new JenSoftApiChartFactory(horizontalBarChartFactory, chartUtil);
+        chartFactory = new JenSoftApiChartFactory(horizontalBarChartFactory, pieChartFactory, backgroundImageChartFactory, chartUtil);
     }
 
     @Test

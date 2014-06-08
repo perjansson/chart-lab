@@ -1,4 +1,4 @@
-package com.peejay.chart.jensoftapi.background;
+package com.peejay.chart.jensoftapi;
 import java.awt.BasicStroke;
 import java.awt.Color;
 import java.awt.Font;

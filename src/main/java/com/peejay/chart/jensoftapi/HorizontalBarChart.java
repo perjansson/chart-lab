@@ -1,4 +1,4 @@
-package com.peejay.chart.jensoftapi.horizontalbar;
+package com.peejay.chart.jensoftapi;
 
 import java.awt.*;
 import java.awt.image.BufferedImage;

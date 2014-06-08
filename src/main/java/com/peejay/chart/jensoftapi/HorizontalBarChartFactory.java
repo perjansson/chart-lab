@@ -1,7 +1,6 @@
-package com.peejay.chart.jensoftapi.horizontalbar;
+package com.peejay.chart.jensoftapi;
 
-import com.peejay.chart.jensoftapi.ChartInputDTO;
-import com.peejay.chart.jensoftapi.ChartProvider;
+import com.peejay.chart.ChartInputDTO;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

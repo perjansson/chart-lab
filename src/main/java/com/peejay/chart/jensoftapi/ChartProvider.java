@@ -1,6 +1,5 @@
 package com.peejay.chart.jensoftapi;
 
-import com.peejay.chart.jensoftapi.horizontalbar.HorizontalBarChart;
 import org.springframework.stereotype.Service;
 
 /**
@@ -12,6 +11,14 @@ public class ChartProvider {
 
     public HorizontalBarChart getHorizontalBarChart() {
         return new HorizontalBarChart();
+    }
+
+    public PieChart getPieChart() {
+        return new PieChart();
+    }
+
+    public BackgroundImageChart getBackgroundImageChart() {
+        return new BackgroundImageChart();
     }
 
 }

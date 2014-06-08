@@ -1,4 +1,4 @@
-package com.peejay.chart.jensoftapi.pie;
+package com.peejay.chart.jensoftapi;
 
 import com.jensoft.core.catalog.nature.JenSoftView;
 import com.jensoft.core.palette.ColorPalette;
@@ -21,7 +21,6 @@ import com.peejay.chart.Chart;
 import java.awt.*;
 import java.awt.image.BufferedImage;
 
-@JenSoftView(description = "Pie chart")
 public class PieChart extends View2D implements Chart {
 
     public PieChart() {

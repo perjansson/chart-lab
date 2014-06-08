@@ -1,6 +1,5 @@
 package com.peejay.chart.jensoftapi;
 
-import com.peejay.chart.jensoftapi.horizontalbar.HorizontalBarChart;
 import org.junit.Test;
 
 import static org.fest.assertions.Assertions.assertThat;

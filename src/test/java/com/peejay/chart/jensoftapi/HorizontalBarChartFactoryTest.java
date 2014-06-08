@@ -1,7 +1,9 @@
-package com.peejay.chart.jensoftapi.horizontalbar;
+package com.peejay.chart.jensoftapi;
 
-import com.peejay.chart.jensoftapi.ChartInputDTO;
+import com.peejay.chart.ChartInputDTO;
 import com.peejay.chart.jensoftapi.ChartProvider;
+import com.peejay.chart.jensoftapi.HorizontalBarChart;
+import com.peejay.chart.jensoftapi.HorizontalBarChartFactory;
 import org.junit.Before;
 import org.junit.Test;
 

@@ -1,4 +1,4 @@
-package com.peejay.chart.jensoftapi;
+package com.peejay.chart;
 
 public class ChartInputDTO<T extends Object> {
 
