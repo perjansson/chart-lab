@@ -8,6 +8,7 @@ import com.jensoft.core.plugin.symbol.BarSymbol.MorpheStyle;
 import com.jensoft.core.plugin.symbol.SymbolPlugin.SymbolNature;
 import com.jensoft.core.plugin.symbol.painter.draw.BarDefaultDraw;
 import com.jensoft.core.plugin.symbol.painter.effect.*;
+import com.jensoft.core.plugin.symbol.painter.fill.AbstractBarDefaultFill;
 import com.jensoft.core.plugin.symbol.painter.fill.BarFill1;
 import com.jensoft.core.plugin.symbol.painter.fill.BarFill2;
 import com.jensoft.core.view.View2D;
@@ -35,6 +36,8 @@ public class HorizontalBarChart extends View2D implements Chart {
 
         barLayer = new BarSymbolLayer();
         barPlugin.addLayer(barLayer);
+
+        setBackground(Color.WHITE);
     }
 
     public void addBar(String name, Double base, Double value) {
@@ -44,14 +47,14 @@ public class HorizontalBarChart extends View2D implements Chart {
         barSymbol.setAscentValue(base + value);
         barSymbol.setThickness(25);
 
-        Stack offsetStack = new Stack("offset", NanoChromatique.LIGHT_GRAY, base);
+        Stack offsetStack = new Stack("offset", new Color(248, 248, 248), base);
         barSymbol.addStack(offsetStack);
 
-        Stack valueStack = new Stack(name, NanoChromatique.DARK_GRAY, value);
+        Stack valueStack = new Stack(name, Color.BLACK, value);
         barSymbol.addStack(valueStack);
 
         barSymbol.setMorpheStyle(MorpheStyle.Rectangle);
-        barSymbol.setBarFill(new BarFill1());
+        barSymbol.setBarFill(new AbstractBarDefaultFill());
         //barSymbol.setBarDraw(new BarDefaultDraw());
         //barSymbol.setBarEffect(new BarEffect1());
         //barSymbol.setRound(5);
