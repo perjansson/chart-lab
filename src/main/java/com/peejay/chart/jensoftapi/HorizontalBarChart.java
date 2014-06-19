@@ -8,9 +8,12 @@ import com.jensoft.core.plugin.symbol.*;
 import com.jensoft.core.plugin.symbol.BarSymbol.MorpheStyle;
 import com.jensoft.core.plugin.symbol.SymbolPlugin.SymbolNature;
 import com.jensoft.core.plugin.symbol.painter.draw.BarDefaultDraw;
+import com.jensoft.core.plugin.symbol.painter.effect.BarEffect2;
 import com.jensoft.core.plugin.symbol.painter.effect.BarEffect3;
+import com.jensoft.core.plugin.symbol.painter.effect.BarEffect4;
 import com.jensoft.core.plugin.symbol.painter.effect.BarEffect5;
 import com.jensoft.core.plugin.symbol.painter.fill.AbstractBarDefaultFill;
+import com.jensoft.core.plugin.symbol.painter.fill.BarFill1;
 import com.jensoft.core.view.View2D;
 import com.jensoft.core.window.Window2D;
 import com.peejay.chart.Chart;
@@ -50,20 +53,20 @@ public class HorizontalBarChart extends View2D implements Chart {
 
     public void addBar(String name, Double base, Double value) {
         StackedBarSymbol barSymbol = new StackedBarSymbol();
-        barSymbol.setThemeColor(Color.WHITE);
+        barSymbol.setThemeColor(new Color(255, 255, 255));
         barSymbol.setBase(0);
         barSymbol.setAscentValue(base + value);
         barSymbol.setThickness(25);
-        barSymbol.setBarEffect(new BarEffect3());
+        barSymbol.setMorpheStyle(MorpheStyle.Rectangle);
+        barSymbol.setBarDraw(new BarDefaultDraw());
+        barSymbol.setBarFill(new BarFill1());
+        barSymbol.setBarEffect(new BarEffect4());
 
-        Stack offsetStack = new Stack("offset", new Color(200, 200, 200), base);
+        Stack offsetStack = new Stack("offset", new Color(235, 137, 92), base);
         barSymbol.addStack(offsetStack);
 
-        Stack valueStack = new Stack(name, Color.BLACK, value);
+        Stack valueStack = new Stack(name, new Color(119, 150, 98), value);
         barSymbol.addStack(valueStack);
-
-        barSymbol.setMorpheStyle(MorpheStyle.Rectangle);
-        barSymbol.setBarFill(new AbstractBarDefaultFill());
 
         barLayer.addSymbol(SymbolComponent.createStrut(BarSymbol.class, 10));
         barLayer.addSymbol(barSymbol);
