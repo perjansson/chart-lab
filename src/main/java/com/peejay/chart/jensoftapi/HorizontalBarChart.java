@@ -1,16 +1,16 @@
 package com.peejay.chart.jensoftapi;
 
-import com.jensoft.core.palette.*;
+import com.jensoft.core.plugin.grid.Grid;
+import com.jensoft.core.plugin.grid.GridPlugin;
 import com.jensoft.core.plugin.stripe.StripePlugin;
 import com.jensoft.core.plugin.stripe.painter.StripePalette;
 import com.jensoft.core.plugin.symbol.*;
 import com.jensoft.core.plugin.symbol.BarSymbol.MorpheStyle;
 import com.jensoft.core.plugin.symbol.SymbolPlugin.SymbolNature;
 import com.jensoft.core.plugin.symbol.painter.draw.BarDefaultDraw;
-import com.jensoft.core.plugin.symbol.painter.effect.*;
+import com.jensoft.core.plugin.symbol.painter.effect.BarEffect3;
+import com.jensoft.core.plugin.symbol.painter.effect.BarEffect5;
 import com.jensoft.core.plugin.symbol.painter.fill.AbstractBarDefaultFill;
-import com.jensoft.core.plugin.symbol.painter.fill.BarFill1;
-import com.jensoft.core.plugin.symbol.painter.fill.BarFill2;
 import com.jensoft.core.view.View2D;
 import com.jensoft.core.window.Window2D;
 import com.peejay.chart.Chart;
@@ -34,6 +34,14 @@ public class HorizontalBarChart extends View2D implements Chart {
         barPlugin.setNature(SymbolNature.Horizontal);
         w2d.registerPlugin(barPlugin);
 
+        StripePlugin stripePlugin = new StripePlugin.MultiplierStripe.V(0, 20);
+        StripePalette bp = new StripePalette();
+        bp.addPaint(new Color(255, 255, 255, 40));
+        bp.addPaint(new Color(0, 0, 0, 60));
+        stripePlugin.setStripePalette(bp);
+        stripePlugin.setAlpha(0.3f);
+        //w2d.registerPlugin(stripePlugin);
+
         barLayer = new BarSymbolLayer();
         barPlugin.addLayer(barLayer);
 
@@ -46,8 +54,9 @@ public class HorizontalBarChart extends View2D implements Chart {
         barSymbol.setBase(0);
         barSymbol.setAscentValue(base + value);
         barSymbol.setThickness(25);
+        barSymbol.setBarEffect(new BarEffect3());
 
-        Stack offsetStack = new Stack("offset", new Color(248, 248, 248), base);
+        Stack offsetStack = new Stack("offset", new Color(200, 200, 200), base);
         barSymbol.addStack(offsetStack);
 
         Stack valueStack = new Stack(name, Color.BLACK, value);
@@ -55,9 +64,7 @@ public class HorizontalBarChart extends View2D implements Chart {
 
         barSymbol.setMorpheStyle(MorpheStyle.Rectangle);
         barSymbol.setBarFill(new AbstractBarDefaultFill());
-        //barSymbol.setBarDraw(new BarDefaultDraw());
-        //barSymbol.setBarEffect(new BarEffect1());
-        //barSymbol.setRound(5);
+
         barLayer.addSymbol(SymbolComponent.createStrut(BarSymbol.class, 10));
         barLayer.addSymbol(barSymbol);
     }
