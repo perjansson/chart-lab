@@ -1,9 +1,6 @@
 package com.peejay.chart.jensoftapi;
 
 import com.peejay.chart.ChartInputDTO;
-import com.peejay.chart.jensoftapi.ChartProvider;
-import com.peejay.chart.jensoftapi.HorizontalBarChart;
-import com.peejay.chart.jensoftapi.HorizontalBarChartFactory;
 import org.junit.Before;
 import org.junit.Test;
 
@@ -16,13 +13,13 @@ import static org.mockito.Mockito.verify;
 
 public class HorizontalBarChartFactoryTest {
 
-    private HorizontalBarChartFactory horizontalBarChartFactory;
+    private HorizontalBarChartFactory factory;
     private ChartProvider chartProvider;
 
     @Before
     public void setUp() {
         chartProvider = mock(ChartProvider.class);
-        horizontalBarChartFactory = new HorizontalBarChartFactory(chartProvider);
+        factory = new HorizontalBarChartFactory(chartProvider);
     }
 
     @Test
@@ -37,7 +34,7 @@ public class HorizontalBarChartFactoryTest {
         ChartInputDTO<Map<String, Double>> inputDTO = new ChartInputDTO<Map<String, Double>>(inputs, 500, 300, "png");
 
         // when
-        horizontalBarChartFactory.createChart(inputDTO);
+        factory.createChart(inputDTO);
 
         // then
         verify(chart).addBar("Total", 0d, 100d);

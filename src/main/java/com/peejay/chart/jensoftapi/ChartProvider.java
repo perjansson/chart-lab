@@ -13,6 +13,10 @@ public class ChartProvider {
         return new HorizontalBarChart();
     }
 
+    public VerticalBarChart getVerticalBarChart() {
+        return new VerticalBarChart();
+    }
+
     public PieChart getPieChart() {
         return new PieChart();
     }

@@ -18,4 +18,18 @@ public class ChartProviderTest {
         assertThat(chart2).isNotNull();
         assertThat(chart1).isNotEqualTo(chart2);
     }
+
+    @Test
+    public void shouldCreateNewInstanceOfVerticalBarChart() {
+        // given
+        ChartProvider provider = new ChartProvider();
+        // when
+        VerticalBarChart chart1 = provider.getVerticalBarChart();
+        VerticalBarChart chart2 = provider.getVerticalBarChart();
+        // then
+        assertThat(chart1).isNotNull();
+        assertThat(chart2).isNotNull();
+        assertThat(chart1).isNotEqualTo(chart2);
+    }
+
 }

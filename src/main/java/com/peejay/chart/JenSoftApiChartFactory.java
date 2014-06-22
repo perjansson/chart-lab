@@ -8,19 +8,22 @@ import javax.imageio.ImageIO;
 import java.awt.image.BufferedImage;
 import java.io.ByteArrayOutputStream;
 import java.io.IOException;
+import java.util.List;
 import java.util.Map;
 
 @Service
 public class JenSoftApiChartFactory implements ChartFactory {
 
     private final HorizontalBarChartFactory horizontalBarChartFactory;
+    private VerticalBarChartFactory verticalBarChartFactory;
     private final PieChartFactory pieChartFactory;
     private final BackgroundImageChartFactory backgroundImageChartFactory;
     private final ChartUtil chartUtil;
 
     @Autowired
-    public JenSoftApiChartFactory(HorizontalBarChartFactory horizontalBarChartFactory, PieChartFactory pieChartFactory, BackgroundImageChartFactory backgroundImageChartFactory, ChartUtil chartUtil) {
+    public JenSoftApiChartFactory(HorizontalBarChartFactory horizontalBarChartFactory, VerticalBarChartFactory verticalBarChartFactory, PieChartFactory pieChartFactory, BackgroundImageChartFactory backgroundImageChartFactory, ChartUtil chartUtil) {
         this.horizontalBarChartFactory = horizontalBarChartFactory;
+        this.verticalBarChartFactory = verticalBarChartFactory;
         this.pieChartFactory = pieChartFactory;
         this.backgroundImageChartFactory = backgroundImageChartFactory;
         this.chartUtil = chartUtil;
@@ -29,6 +32,12 @@ public class JenSoftApiChartFactory implements ChartFactory {
     @Override
     public ChartDTO createHorizontalBarChart(ChartInputDTO<Map<String, Double>> inputDTO) {
         HorizontalBarChart chart = horizontalBarChartFactory.createChart(inputDTO);
+        return createChartDTO(inputDTO, chart);
+    }
+
+    @Override
+    public ChartDTO createVerticalBarChart(ChartInputDTO<List<Map<String, Double>>> inputDTO) {
+        VerticalBarChart chart = verticalBarChartFactory.createChart(inputDTO);
         return createChartDTO(inputDTO, chart);
     }
 
