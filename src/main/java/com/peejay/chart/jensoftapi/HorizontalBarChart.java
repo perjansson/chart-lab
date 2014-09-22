@@ -12,7 +12,7 @@ import com.jensoft.core.plugin.symbol.painter.effect.BarEffect2;
 import com.jensoft.core.plugin.symbol.painter.effect.BarEffect3;
 import com.jensoft.core.plugin.symbol.painter.effect.BarEffect4;
 import com.jensoft.core.plugin.symbol.painter.effect.BarEffect5;
-import com.jensoft.core.plugin.symbol.painter.fill.AbstractBarDefaultFill;
+import com.jensoft.core.plugin.symbol.painter.fill.AbstractBarFill;
 import com.jensoft.core.plugin.symbol.painter.fill.BarFill1;
 import com.jensoft.core.view.View2D;
 import com.jensoft.core.window.Window2D;
